@@ -113,14 +113,17 @@ timestamp() {
 handle_auth_factor_error() {
   echo "[$(timestamp)] Bluesky rejected the login with AuthFactorTokenRequired."
   cat <<'EOF'
-Action required: Bluesky now requires an App Password (2FA code) for this account.
+Action required: Bluesky requires 2-factor Authentication for this account.
+We must use an App Password instead of your user password.
 
 How to fix:
   1. Sign in to https://bsky.app/settings/app-passwords
-  2. Create a new App Password (do NOT reuse your account password)
+  2. Create a new App Password.
   3. Update BLUESKY_PASSWORD in your .env file with the new App Password
   4. Rebuild/restart the container
 
+Do not use this App Password for anything else.
+Revoke it in the future if you no longer use this container.
 The scheduler will now exit so you can update credentials.
 EOF
   exit 1
